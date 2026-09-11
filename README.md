@@ -23,7 +23,7 @@ The `exposureState()` view calculates the amount executable under the stated “
 
 ## Run it
 
-Requirements: Node.js 22+ and Chrome for the browser test.
+Requirements: Node.js 24+ and Chrome for the browser test.
 
 ```bash
 npm install
