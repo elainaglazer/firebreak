@@ -1,0 +1,22 @@
+{
+  "name": "firebreak-pin-auth-workflow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "demo:secrets": "tsx generate-demo-env.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test workflow.test.ts"
+  },
+  "dependencies": {
+    "@chainlink/cre-sdk": "1.18.0",
+    "@noble/hashes": "2.0.0",
+    "viem": "2.34.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.1",
+    "tsx": "4.20.5",
+    "typescript": "5.9.3"
+  }
+}

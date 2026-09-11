@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Firebreak Vault</title><link rel="stylesheet" href="/styles.css"></head>
+<body>
+  <header><a class="brand" href="#wallet"><span class="mark">F</span><span>Firebreak</span></a><nav aria-label="Primary"><button class="nav active" data-view="wallet">Wallet</button><button class="nav" data-view="security">Security</button><button class="nav" data-view="lab">Attack Lab</button></nav><span id="mode" class="mode"></span></header>
+  <main>
+    <section id="wallet" class="view active">
+      <div class="intro"><p class="eyebrow">PROTECTED RESERVE</p><h1>Your money, with room to react.</h1><p>Small payments stay simple. Large withdrawals wait.</p></div>
+      <div class="grid wallet-grid">
+        <article class="balance card"><span>Vault balance</span><strong><span id="balance">—</span> <small>tUSD</small></strong><div class="capacity"><div><span>Available to send now</span><b id="available">—</b></div><div class="meter"><i id="meter"></i></div><small>Refills continuously · 100 tUSD / 24 hours</small></div></article>
+        <form id="pay-form" class="card pay"><h2>Send</h2><label>Recipient<input value="Demo recipient" readonly></label><label>Amount<div class="amount"><input id="amount" type="number" min="0.000001" step="0.01" value="25"><span>tUSD</span></div></label><div id="quote" class="quote"></div><button id="pay-button" class="primary" type="button">Review payment</button><p class="fine">One device confirmation authorizes the exact recipient, amount, mode and expiry.</p></form>
+      </div>
+      <article class="card pending-card"><div class="section-title"><h2>Scheduled payments</h2><span id="pending-count">0 active</span></div><div id="pending" class="empty">Nothing is waiting.</div></article>
+    </section>
+    <section id="security" class="view">
+      <div class="intro"><p class="eyebrow">RECOVERY WITHOUT A MASTER KEY</p><h1>Independent ways back in.</h1><p>The leaked seed cannot enroll a device or cancel guardian recovery.</p></div>
+      <div class="grid security-grid"><article class="card status-card"><div class="icon good">✓</div><div><h2>Everyday device</h2><p>Independent confirmation factor</p></div><span class="pill good">READY</span></article><article class="card status-card"><div class="icon">5</div><div><h2>Backup PIN lane</h2><p><span id="attempts">—</span> attempts remain this period</p></div><span id="auth-pill" class="pill"></span></article><article class="card status-card"><div class="icon">2/3</div><div><h2>Guardian recovery</h2><p>Works without the seed or PIN service</p></div><span class="pill good">READY</span></article></div>
+      <article class="card recovery"><div><h2 id="recovery-title">No recovery in progress</h2><p id="recovery-copy">Two distinct guardians can freeze the vault and install fresh credentials after a three-minute demo delay.</p></div><div class="actions"><button id="auth-toggle" class="secondary">Stop PIN service</button><button id="recovery-button" class="danger">Begin guardian recovery</button></div></article>
+    </section>
+    <section id="lab" class="view">
+      <div class="intro lab-intro"><p class="eyebrow">LIVE CONTRACT, DISPOSABLE KEYS</p><h1>Don’t trust the claim. Run the attack.</h1><p>Each scenario changes the same local vault and records the observed balance consequence.</p></div>
+      <div class="exposure card"><div><span>Both everyday factors compromised</span><strong><span id="exposure">—</span> tUSD</strong><small>executable now, including matured scheduled transfers</small></div><div><span>Attacker received</span><strong><span id="attacker-balance">0</span> tUSD</strong><small>observed on this disposable chain</small></div><div><span>Vault state</span><strong id="vault-state">ACTIVE</strong><small>snapshot epoch <span id="epoch">0</span></small></div></div>
+      <div class="attack-grid"><article class="card attack"><span class="step">01 · ONE FACTOR</span><h2>Steal the seed</h2><p>Try to drain 100 tUSD without the independent device.</p><button data-attack="seed" class="secondary">Run seed-only drain</button></article><article class="card attack"><span class="step">02 · ABUSE</span><h2>Flood backup access</h2><p>Send 100 requests. The account admits at most five candidates.</p><button data-attack="flood" class="secondary">Run 100-request flood</button></article><article class="card attack"><span class="step">03 · FULL COMPROMISE</span><h2>Take both factors</h2><p>Withdraw the contract’s predicted immediate capacity and compare.</p><button data-attack="full" class="danger">Attempt maximum loss</button></article></div>
+      <article class="card evidence-card"><div class="section-title"><h2>Execution evidence</h2><button id="reset" class="text-button">Reset disposable vault</button></div><div id="evidence" class="evidence"></div></article>
+    </section>
+  </main><div id="toast" role="status"></div><script type="module" src="/app.js"></script>
+</body></html>

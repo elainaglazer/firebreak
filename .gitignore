@@ -1,0 +1,8 @@
+node_modules/
+workflows/*/node_modules/
+.env
+*.local
+workflows/pin-auth/.env.simulation
+coverage/
+.DS_Store
+npm-debug.log*

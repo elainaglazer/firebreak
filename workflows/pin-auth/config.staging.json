@@ -1,0 +1,6 @@
+{
+  "schedule": "0 */2 * * * *",
+  "requestUrl": "http://host.docker.internal:4173/api/cre/pending",
+  "pepperSecretId": "FIREBREAK_PEPPER",
+  "verifierSecretId": "FIREBREAK_VERIFIER"
+}
