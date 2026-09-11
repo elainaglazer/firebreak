@@ -70,9 +70,9 @@ Run `npm run check:all` and finish on the Attack Lab evidence. “Firebreak does
 
 ## Submission checklist
 
-- [ ] Create a public GitHub repository and push the prepared `main` branch.
+- [x] Public GitHub repository created and the prepared `main` branch pushed.
 - [ ] Record the demo with the script above; keep terminal output visible for the final test command.
 - [ ] Add the repository URL and video URL to the contest form.
 - [ ] Select the Chainlink CRE prize track.
-- [ ] State “local CRE-compatible workflow; no live DON deployment” unless a successful official simulation or deployment has been added.
+- [x] Official authenticated CRE simulation completed with production limits; state clearly that this is not a live DON deployment.
 - [ ] Do not describe the prototype as audited, production ready, end-to-end encrypted, or resistant to network-layer DDoS.

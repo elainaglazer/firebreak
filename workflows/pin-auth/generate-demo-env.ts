@@ -9,7 +9,7 @@ const response = await fetch(endpoint);
 if (!response.ok) throw new Error(`No prepared request at ${endpoint}: HTTP ${response.status}`);
 const request = requestSchema.parse(await response.json());
 const expected = createVerifier({ ...request, candidatePin: correctPin }, pepper);
-const output = `FIREBREAK_PEPPER=${pepper}\nFIREBREAK_VERIFIER=${expected}\n`;
+const output = `CRE_FIREBREAK_PEPPER=${pepper}\nCRE_FIREBREAK_VERIFIER=${expected}\n`;
 const destination = path.join(import.meta.dirname, ".env.simulation");
 fs.writeFileSync(destination, output, { encoding: "utf8", mode: 0o600 });
 console.log(`Wrote local-only simulator secrets to ${destination}`);

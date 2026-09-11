@@ -7,7 +7,7 @@ import { z } from "zod";
 
 export const configSchema = z.object({
   schedule: z.string(),
-  requestUrl: z.string().url(),
+  requestUrl: z.string().regex(/^https:\/\/[^\s]+$/),
   pepperSecretId: z.string(),
   verifierSecretId: z.string(),
 });

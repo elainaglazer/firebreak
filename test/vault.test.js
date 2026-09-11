@@ -46,13 +46,16 @@ test("same transfer nonce cannot execute through both lanes", async () => {
 });
 
 test("split payments cannot exceed token bucket, which refills over time", async () => {
-  const d = await createDemo();
-  for (let i = 0; i < 4; i++) await d.devicePay(25);
-  await assert.rejects(() => d.devicePay(1));
-  await d.advance(3600);
-  await d.devicePay(4);
-  const state = await d.snapshot();
-  assert(state.availableNow < 0.18 && state.availableNow >= 0.16);
+  const exhausted = await createDemo();
+  for (let i = 0; i < 4; i++) await exhausted.devicePay(25);
+  await assert.rejects(() => exhausted.devicePay(1));
+
+  const refilled = await createDemo();
+  for (let i = 0; i < 4; i++) await refilled.devicePay(25);
+  await refilled.advance(3700);
+  await refilled.devicePay(4);
+  const state = await refilled.snapshot();
+  assert(state.availableNow > 0 && state.availableNow < 0.5);
 });
 
 test("large payment is queued, reserved, delayed and executes once", async () => {

@@ -78,10 +78,11 @@ The on-chain admission budget is consumed before evaluation, so rotating endpoin
 - Solidity compiles with `solc` 0.8.30 using optimization and IR.
 - Twelve adversarial integration tests run against deployed bytecode on a fresh local EVM.
 - The CRE workflow typechecks and its account-binding verifier test passes.
+- The authenticated official CRE simulator compiles and executes the workflow with production limits, returning `"APPROVE"` for the bound candidate and `"REJECT"` for a wrong candidate; hashes and transcript are in `CRE-SIMULATION.md`.
 - The browser test clicks through ordinary payment, stolen-seed rejection, a 100-request flood, backup-service outage, and continued device payment.
 - `evidence/firebreak-attack-lab.png` is produced by that browser run.
 
-This is an unaudited hackathon prototype using a permissionless-mint test token and test keys. A live deployment must bind `CREAuthGateway` to the current official CRE forwarder and provide deployment/simulation evidence. Do not use it with real assets.
+This is an unaudited hackathon prototype using a permissionless-mint test token and test keys. The successful simulator is not a real TEE or live DON deployment. A live deployment must bind `CREAuthGateway` to the current official CRE forwarder. Do not use it with real assets.
 
 ## Repository map
 

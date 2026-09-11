@@ -1,0 +1,31 @@
+Firebreak official CRE simulation evidence
+Captured: 2026-09-11T22:38:21+07:00
+
+CRE CLI version v1.33.0
+Bun 1.4.2
+Javy v8.1.0
+
+Workflow compiled
+Simulation limits enabled
+HTTP: req=120kb resp=250kb timeout=10s
+ConfHTTP: req=125kb resp=500kb timeout=1m30s
+Consensus obs=25kb
+ChainWrite evm_report=50kb evm_gas=10000000 solana_report=265b solana_cu=300000
+WASM binary=100mb compressed=20mb
+
+Binary hash: f3e307433c7e98b53db0f978e93712205d18a5bbdd43e138514001b2b5339842
+Config hash: e175ca627aedf4f3500b199a73e1ee162598b263a5a5ba70b669337910707d8b
+
+[SIMULATION] Simulator Initialized
+[SIMULATION] Running trigger trigger=cron-trigger@1.0.0
+Trigger requested TEE Execution: AWS Nitro in us-west-2
+The simulator is not a real TEE and is meant to debug.
+
+Correct candidate simulation result:
+"APPROVE"
+
+Wrong candidate simulation result:
+"REJECT"
+
+[SIMULATION] Execution finished signal received
+Simulation complete.
