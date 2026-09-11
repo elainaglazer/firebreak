@@ -17,6 +17,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      - run: npm ci --ignore-scripts --omit=optional
       - run: npm --prefix workflows/pin-auth ci
       - run: npm run check:all
