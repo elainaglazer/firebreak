@@ -4,6 +4,14 @@
 
 Firebreak
 
+## Repository
+
+https://github.com/elainaglazer/firebreak
+
+## Automated verification
+
+https://github.com/elainaglazer/firebreak/actions/workflows/verify.yml
+
 ## Tagline
 
 A stablecoin reserve that measures and limits what an attacker can take before the owner can react.

@@ -1,5 +1,7 @@
 # Firebreak
 
+[![verify](https://github.com/elainaglazer/firebreak/actions/workflows/verify.yml/badge.svg)](https://github.com/elainaglazer/firebreak/actions/workflows/verify.yml)
+
 **A stablecoin reserve that stays usable every day and gives its owner time to react when credentials fail.**
 
 Wallet security usually asks whether a transaction is authorized. Firebreak asks a second question: **how much loss is executable right now?** It combines exact two-factor signatures, a continuously refilling spending allowance, cancellable delays for large transfers, a rate-limited recovery lane evaluated by a Chainlink Runtime Environment (CRE) confidential workflow, and 2-of-3 guardian recovery that does not depend on the old seed or the recovery service.
@@ -93,7 +95,7 @@ This is an unaudited hackathon prototype using a permissionless-mint test token 
 - `test/vault.test.js` — adversarial contract tests
 - `SUBMISSION.md` — paste-ready contest copy and recording script
 - `SECURITY.md` — assumptions, invariants, and production gaps
-- `CRE-SIMULATION.md` — exact official-simulator command and current authentication blocker
+- `CRE-SIMULATION.md` — exact official-simulator commands, hashes, and successful run evidence
 
 ## License
 
