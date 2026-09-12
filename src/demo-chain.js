@@ -64,6 +64,11 @@ export async function createDemo() {
   let nonce = 1000n;
   let reservationNonce = 5000n;
 
+  async function latestTimestamp() {
+    const block = await eip1193.request({ method: "eth_getBlockByNumber", params: ["latest", false] });
+    return Number.parseInt(block.timestamp, 16);
+  }
+
   async function snapshot() {
     const [balance, credit, reserved, matured, exposure] = await vault.exposureState();
     const attempts = await vault.attemptsRemaining();
@@ -78,8 +83,8 @@ export async function createDemo() {
   }
 
   async function makeAction(amount, mode = 0, recipient = accounts.recipient.address) {
-    const block = await provider.getBlock("latest");
-    return { epoch: await vault.epoch(), nonce: nonce++, recipient, amount: units(amount), mode, deadline: BigInt(block.timestamp + 3600) };
+    const timestamp = await latestTimestamp();
+    return { epoch: await vault.epoch(), nonce: nonce++, recipient, amount: units(amount), mode, deadline: BigInt(timestamp + 3600) };
   }
 
   async function devicePay(amount, mode = 0, recipient = accounts.recipient.address) {
@@ -104,8 +109,8 @@ export async function createDemo() {
     const action = await makeAction(amount, 0, accounts.attacker.address);
     const actionDigest = TypedDataEncoder.hash(domain, transferTypes, action);
     const requestHash = keccak256(toUtf8Bytes(JSON.stringify({ pin, actionDigest, nonce: reservationNonce.toString() })));
-    const block = await provider.getBlock("latest");
-    const reservation = { epoch: action.epoch, reservationNonce: reservationNonce++, actionDigest, requestHash, deadline: BigInt(block.timestamp + 900) };
+    const timestamp = await latestTimestamp();
+    const reservation = { epoch: action.epoch, reservationNonce: reservationNonce++, actionDigest, requestHash, deadline: BigInt(timestamp + 900) };
     const signature = await accounts.seed.signTypedData(domain, reserveTypes, reservation);
     const attemptId = keccak256(AbiCoder.defaultAbiCoder().encode(
       ["address", "uint256", "uint256"], [await vault.getAddress(), action.epoch, reservation.reservationNonce],
@@ -136,8 +141,8 @@ export async function createDemo() {
   async function beginRecovery() {
     const newSeed = Wallet.createRandom();
     const newDevice = Wallet.createRandom();
-    const block = await provider.getBlock("latest");
-    const proposal = { epoch: await vault.epoch(), recoveryNonce: await vault.recoveryNonce(), newSeedSigner: newSeed.address, newDeviceSigner: newDevice.address, deadline: BigInt(block.timestamp + 3600) };
+    const timestamp = await latestTimestamp();
+    const proposal = { epoch: await vault.epoch(), recoveryNonce: await vault.recoveryNonce(), newSeedSigner: newSeed.address, newDeviceSigner: newDevice.address, deadline: BigInt(timestamp + 3600) };
     const signatures = await Promise.all(accounts.guardians.slice(0, 2).map((g) => g.signTypedData(domain, recoveryTypes, proposal)));
     await (await vault.beginRecovery(proposal.recoveryNonce, proposal.newSeedSigner, proposal.newDeviceSigner, proposal.deadline, signatures, { gasLimit: 1_000_000 })).wait();
     accounts.nextSeed = newSeed.connect(provider); accounts.nextDevice = newDevice.connect(provider);
