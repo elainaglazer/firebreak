@@ -46,41 +46,24 @@ CRE handles the part that cannot be public on-chain: evaluating a PIN candidate 
 
 Solidity, OpenZeppelin, ethers, Ganache, Express, Playwright, and the Chainlink CRE TypeScript SDK. The complete judged demo runs locally with test assets and no paid RPC, API, or cloud account.
 
-## Demo video script — 2 minutes 30 seconds
+## Demo video — 3 minutes 43 seconds
 
-**0:00–0:15 — Hook**
+The prepared full-HD visual master and human narration script cover ordinary payment, delayed transfer, exposure measurement, seed theft, request flooding, authenticator outage, continued payment, guardian recovery, full compromise, CRE architecture, official simulator evidence, and reproducible verification. The final narration is recorded by the entrant; ETHOnline explicitly prohibits synthetic voice-over.
 
-“A wallet should answer more than ‘was this signed?’ Firebreak tells you how much an attacker can execute before you have time to react—and lets you prove it.”
+See [`docs/DEMO-NARRATION.md`](docs/DEMO-NARRATION.md) for the timestamped script.
 
-**0:15–0:40 — Daily use**
+## AI disclosure
 
-Show the 1,000 tUSD balance and 100 tUSD available meter. Send 25 tUSD. Point out that recipient, amount, mode, nonce, epoch, expiry, chain, and vault are signed. Enter 150 tUSD and show that the button changes to “Schedule” before confirmation.
-
-**0:40–1:15 — Attack Lab**
-
-Run the stolen-seed attack and show `BLOCKED`. Run the 100-request flood and show five evaluated and 95 denied by the on-chain account budget. Explain that IP rotation cannot create more account attempts.
-
-**1:15–1:35 — Availability**
-
-Stop the PIN service in Security, return to Wallet, and send 20 tUSD. Explain that recovery-service failure does not disable the independent everyday lane.
-
-**1:35–2:00 — Recovery**
-
-Begin guardian recovery. Show the vault freeze and epoch change. Explain that two of three guardians can act without the old seed, device, or PIN service; pending authority is invalidated immediately.
-
-**2:00–2:20 — CRE**
-
-Show `workflows/pin-auth/workflow.ts`: Nitro TEE request, CRE secrets, account-bound verifier, constant-work compare, and the exact ABI report. Show `CREAuthGateway.sol` accepting only the immutable forwarder and one bound vault.
-
-**2:20–2:30 — Evidence**
-
-Run `npm run check:all` and finish on the Attack Lab evidence. “Firebreak does not ask you to trust the security story. It runs the attack.”
+See [`AI-USAGE.md`](AI-USAGE.md). The entrant defined and directed the product and security requirements, reviewed the running interface, authenticated the official CRE CLI, and records the demo narration. Codex assisted with implementation, research, tests, documentation, CI, screenshots, and video editing assets.
 
 ## Submission checklist
 
 - [x] Public GitHub repository created and the prepared `main` branch pushed.
-- [ ] Record the demo with the script above; keep terminal output visible for the final test command.
+- [x] Prepare a 1080p, 3:43 visual master and timestamped narration script.
+- [ ] Record the entrant's narration and combine it with the prepared visual master.
 - [ ] Add the repository URL and video URL to the contest form.
-- [ ] Select the Chainlink CRE prize track.
+- [ ] Select **Chainlink — Best Confidential Workflow** in the Hacker Dashboard.
 - [x] Official authenticated CRE simulation completed with production limits; state clearly that this is not a live DON deployment.
+- [x] Link every Chainlink integration file from the README.
+- [x] Include the AI-assistance disclosure and planning artifacts required by the event rules.
 - [ ] Do not describe the prototype as audited, production ready, end-to-end encrypted, or resistant to network-layer DDoS.

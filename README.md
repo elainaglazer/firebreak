@@ -75,6 +75,16 @@ The browser broker exists to make the disposable local demonstration one-click. 
 
 The on-chain admission budget is consumed before evaluation, so rotating endpoints or flooding the workflow cannot buy more guesses against one vault. The prototype broker can see the submitted PIN; the workflow protects evaluation and secret material inside the TEE, but this repository does not claim end-to-end encrypted PIN transport.
 
+### Chainlink file inventory
+
+Every file that directly implements or configures the Chainlink integration is linked here for sponsor review:
+
+- [`workflows/pin-auth/workflow.ts`](workflows/pin-auth/workflow.ts) — confidential TEE handler, secret retrieval, private verifier evaluation, and exact report encoding
+- [`workflows/pin-auth/main.ts`](workflows/pin-auth/main.ts) — CRE workflow runner entry point
+- [`workflows/pin-auth/config.staging.json`](workflows/pin-auth/config.staging.json) — staging workflow configuration shape
+- [`contracts/CREAuthGateway.sol`](contracts/CREAuthGateway.sol) — immutable CRE forwarder boundary and protocol/report binding
+- [`contracts/FirebreakVault.sol`](contracts/FirebreakVault.sol) — on-chain attempt reservation and consumption of exact CRE authorization decisions
+
 ## Verified scope
 
 - Solidity compiles with `solc` 0.8.30 using optimization and IR.
@@ -96,6 +106,8 @@ This is an unaudited hackathon prototype using a permissionless-mint test token 
 - `SUBMISSION.md` — paste-ready contest copy and recording script
 - `SECURITY.md` — assumptions, invariants, and production gaps
 - `CRE-SIMULATION.md` — exact official-simulator commands, hashes, and successful run evidence
+- `AI-USAGE.md` — entrant contribution and AI-assistance disclosure
+- `docs/planning/` — product decisions, threat simulations, and implementation specification
 
 ## License
 

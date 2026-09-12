@@ -1,0 +1,51 @@
+{
+  "kind": "abstract policy simulation",
+  "limitations": [
+    "Not a contract test or audit",
+    "No cryptography, concurrent worker, network, browser, chain finality, or CRE behavior verified",
+    "Fractional refill differs from conservative base-unit integer rounding required in implementation",
+    "Only selected scenarios; not exhaustive or formal verification"
+  ],
+  "scenarios": [
+    {
+      "scenario": "Routine payments",
+      "result": "PASS",
+      "observation": "8 + 12 + 25 paid; 55 immediate credit remains. No PIN or guardian interaction required by policy."
+    },
+    {
+      "scenario": "Seed theft and PIN exhaustion",
+      "result": "PASS",
+      "observation": "5 of 100 sequential reservation requests accepted; independent device payment of 20 still succeeds. This is not a concurrent/network test."
+    },
+    {
+      "scenario": "Unauthenticated request",
+      "result": "PASS",
+      "observation": "A request without the seed credential does not consume the abstract account budget."
+    },
+    {
+      "scenario": "Both factors stolen, split spending",
+      "result": "PASS",
+      "observation": "100 can leave immediately; another 4 can leave after one hour. A claim of only 100 lost over the whole incident would be false."
+    },
+    {
+      "scenario": "Matured withdrawal",
+      "result": "PASS",
+      "observation": "Current executable outflow changes from 100 to 1000 when a 900 delayed withdrawal matures; queue exposure must be included."
+    },
+    {
+      "scenario": "Independent recovery",
+      "result": "PASS",
+      "observation": "Quorum freezes outbound activity and cancels queued exposure; completion after delay invalidates old-epoch authority. No broker modeled or required."
+    },
+    {
+      "scenario": "Missing device and unavailable authenticator",
+      "result": "PASS",
+      "observation": "Instant owner access is NOT preserved: independent guardian recovery and its delay are needed. UI must not promise uninterrupted access in this combined failure."
+    },
+    {
+      "scenario": "Legitimate large payment",
+      "result": "PASS",
+      "observation": "A 150 payment is delayed even for the honest owner. Product must be a protected reserve with explicit timing, not promise unrestricted instant payments."
+    }
+  ]
+}
